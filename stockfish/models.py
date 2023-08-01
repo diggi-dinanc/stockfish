@@ -741,11 +741,12 @@ class Stockfish:
             development build released on Jan 2, 2022. Otherwise, False is
             returned (which means the engine is an official release of SF).
         """
-        
-        return (
-            self._stockfish_major_version >= 10109
-            and self._stockfish_major_version <= 311299
-        )
+        if isinstance(self._stockfish_major_version, int):
+            return (
+                self._stockfish_major_version >= 10109
+                and self._stockfish_major_version <= 311299
+            )
+        return True
 
     def send_quit_command(self) -> None:
         """Sends the 'quit' command to the Stockfish engine, getting the process
