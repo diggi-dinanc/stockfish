@@ -54,9 +54,7 @@ class Stockfish:
 
         self._has_quit_command_been_sent = False
 
-        self._stockfish_major_version: int = int(
-            self._read_line().split(" ")[1].split(".")[0].replace("-", "")
-        )
+        self._stockfish_major_version = self._read_line().split(" ")[1].split(".")[0].replace("-", "")
 
         self._put("uci")
 
@@ -728,7 +726,7 @@ class Stockfish:
         else:
             return Stockfish.Capture.NO_CAPTURE
 
-    def get_stockfish_major_version(self) -> int:
+    def get_stockfish_major_version(self):
         """Returns Stockfish engine major version."""
 
         return self._stockfish_major_version
@@ -743,6 +741,7 @@ class Stockfish:
             development build released on Jan 2, 2022. Otherwise, False is
             returned (which means the engine is an official release of SF).
         """
+        
         return (
             self._stockfish_major_version >= 10109
             and self._stockfish_major_version <= 311299
